@@ -20,17 +20,14 @@ class UserLogin(SQLModel):
     password: str
 
 class BookCreate(BookBase):
-    currently_reading: bool | None = False
-    current_page : int | None = 0
+    pass
 
 class BookPublic(BookBase):
     id: int
-    currently_reading: bool | None = False
-    current_page : int | None = 0
 
 class BookUpdate(SQLModel):
     title: str | None = None
     author: str | None = None
     pages: int | None = None
     currently_reading: bool | None = None
-    current_page : int | None = None
+    current_page: int | None = None

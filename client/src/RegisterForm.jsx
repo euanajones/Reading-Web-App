@@ -37,54 +37,52 @@ function RegisterForm() {
     };
 
     return (
-        <div className="register-page">
-            <div className="register-card">
-                <div className="register-card__corner-accent" />
-                <p className="register-card__eyebrow">Create Account</p>
-                <h1 className="register-card__heading">Welcome,<br />Reader.</h1>
-                <p className="register-card__subheading">Begin your literary journey</p>
+        <div className="register-card">
+            <div className="register-card__corner-accent" />
+            <p className="register-card__eyebrow">Create Account</p>
+            <h1 className="register-card__heading">Welcome,<br />Reader.</h1>
+            <p className="register-card__subheading">Begin your literary journey</p>
 
-                <div className="register-card__divider">
-                    <div className="register-card__divider-line" />
-                    <div className="register-card__divider-dot" />
-                    <div className="register-card__divider-line register-card__divider-line--reverse" />
+            <div className="register-card__divider">
+                <div className="register-card__divider-line" />
+                <div className="register-card__divider-dot" />
+                <div className="register-card__divider-line register-card__divider-line--reverse" />
+            </div>
+
+            <form onSubmit={handleSubmit}>
+                <div className="register-form__field-group">
+                    <label className="register-form__label">Username</label>
+                    <input ref={usernameRef} type="text" required className="register-form__input" />
                 </div>
 
-                <form onSubmit={handleSubmit}>
-                    <div className="register-form__field-group">
-                        <label className="register-form__label">Username</label>
-                        <input ref={usernameRef} type="text" required className="register-form__input" />
+                <div className="register-form__field-group">
+                    <label className="register-form__label">Email Address</label>
+                    <input ref={emailRef} type="email" required className="register-form__input" />
+                </div>
+
+                <div className="register-form__row">
+                    <div>
+                        <label className="register-form__label">First Name</label>
+                        <input ref={firstNameRef} type="text" required className="register-form__input" />
                     </div>
-
-                    <div className="register-form__field-group">
-                        <label className="register-form__label">Email Address</label>
-                        <input ref={emailRef} type="email" required className="register-form__input" />
+                    <div>
+                        <label className="register-form__label">Last Name</label>
+                        <input ref={lastNameRef} type="text" required className="register-form__input" />
                     </div>
+                </div>
 
-                    <div className="register-form__row">
-                        <div>
-                            <label className="register-form__label">First Name</label>
-                            <input ref={firstNameRef} type="text" required className="register-form__input" />
-                        </div>
-                        <div>
-                            <label className="register-form__label">Last Name</label>
-                            <input ref={lastNameRef} type="text" required className="register-form__input" />
-                        </div>
-                    </div>
+                <div className="register-form__field-group">
+                    <label className="register-form__label">Password</label>
+                    <input ref={passwordRef} type="password" required className="register-form__input" />
+                </div>
 
-                    <div className="register-form__field-group">
-                        <label className="register-form__label">Password</label>
-                        <input ref={passwordRef} type="password" required className="register-form__input" />
-                    </div>
+                <button type="submit" className="register-form__button">
+                    Create Account
+                </button>
 
-                    <button type="submit" className="register-form__button">
-                        Create Account
-                    </button>
-
-                    {error && <p className="register-form__error">Registration failed. Please try again.</p>}
-                    {success && <p className="register-form__success">Registration successful!</p>}
-                </form>
-            </div>
+                {error && <p className="register-form__error">Registration failed. Please try again.</p>}
+                {success && <p className="register-form__success">Registration successful!</p>}
+            </form>
         </div>
     );
 }

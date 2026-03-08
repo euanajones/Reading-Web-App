@@ -4,6 +4,7 @@ from server.models import Book
 from server.schemas import BookCreate, BookPublic, BookUpdate
 from server.auth.auth import verify_current_user
 from sqlmodel import Session, select
+import math
 
 router = APIRouter(prefix="/books", tags=["books"])
 
@@ -49,3 +50,19 @@ def update_book(*, session: Session = Depends(get_session) ,book_id: int, book: 
     session.commit()
     session.refresh(db_book)
     return db_book
+
+@router.get("/progress/{book_id}")
+def get_book_progress(*, session: Session = Depends(get_session), book_id: int, current_user: dict = Depends(verify_current_user)):
+    book = session.get(Book, book_id)
+    if not book:
+        raise HTTPException(status_code=404, detail="Book not found")
+    
+    total_pages = book.pages
+    current_page = book.current_page
+
+    if current_page is None or total_pages == 0:
+        progress = 0
+    else:
+        progress = round((current_page / total_pages) * 10000) / 100
+
+    return {"book_id": book.id, "book_title": book.title, "progress": progress}

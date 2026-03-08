@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap');
+
+.register-page {
+    min-height: 100vh;
+    background: #F5F0E8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Playfair Display", "Georgia", serif;
+    background-image:
+        radial-gradient(ellipse at 20% 50%, #E8956D22 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, #C4622D18 0%, transparent 50%);
+}
+
+.register-card {
+    background: #FDFAF4;
+    border: 1px solid #E2D5C3;
+    border-radius: 2px;
+    padding: 56px 52px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 4px 40px #C4622D18, 0 1px 4px #00000008;
+    position: relative;
+}
+
+.register-card__corner-accent {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    border: 1px solid #E8956D44;
+    border-radius: 1px;
+    pointer-events: none;
+}
+
+.register-card__eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #C4622D;
+    margin-bottom: 8px;
+    font-family: "Georgia", serif;
+}
+
+.register-card__heading {
+    font-size: 32px;
+    font-weight: 700;
+    color: #2C1810;
+    margin-bottom: 6px;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+}
+
+.register-card__subheading {
+    font-size: 13px;
+    color: #9C8570;
+    margin-bottom: 36px;
+    font-family: "Georgia", serif;
+    font-style: italic;
+}
+
+.register-card__divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+}
+
+.register-card__divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #E2D5C3);
+}
+
+.register-card__divider-line--reverse {
+    background: linear-gradient(to left, transparent, #E2D5C3);
+}
+
+.register-card__divider-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #C4622D;
+    opacity: 0.5;
+}
+
+.register-form__field-group {
+    margin-bottom: 18px;
+}
+
+.register-form__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.register-form__label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #7A6553;
+    margin-bottom: 6px;
+    font-family: "Georgia", serif;
+}
+
+.register-form__input {
+    width: 100%;
+    padding: 11px 14px;
+    background: #FAF6EE;
+    border: 1px solid #DDD0BC;
+    border-radius: 2px;
+    font-size: 14px;
+    color: #2C1810;
+    font-family: "Playfair Display", "Georgia", serif;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.register-form__input:focus {
+    border-color: #C4622D;
+    box-shadow: 0 0 0 3px #C4622D14;
+}
+
+.register-form__button {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #C4622D 0%, #E8956D 100%);
+    color: #FDF8F0;
+    border: none;
+    border-radius: 2px;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-family: "Georgia", serif;
+    cursor: pointer;
+    margin-top: 28px;
+    transition: opacity 0.2s, transform 0.1s;
+}
+
+.register-form__button:hover {
+    opacity: 0.88;
+}
+
+.register-form__success {
+    margin-top: 16px;
+    padding: 12px 16px;
+    background: #F0F7F0;
+    border: 1px solid #B8D4B8;
+    border-radius: 2px;
+    color: #3A6B3A;
+    font-size: 13px;
+    font-style: italic;
+    text-align: center;
+}
+
+.register-form__error {
+    margin-top: 16px;
+    padding: 12px 16px;
+    background: #FDF0EC;
+    border: 1px solid #E8C4B4;
+    border-radius: 2px;
+    color: #8B3A1E;
+    font-size: 13px;
+    font-style: italic;
+    text-align: center;
+}

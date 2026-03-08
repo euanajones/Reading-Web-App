@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from 'react';
-import { saveToken, removeToken, getToken } from '../../api';
+import { saveToken, clearToken, getToken } from '../../api';
 
 const AuthContext = createContext(null);
 
@@ -12,7 +12,7 @@ export function AuthProvider({ children }) {
     };
 
     const logout = () => {
-        removeToken();
+        clearToken();
         setToken(null);
     };
 

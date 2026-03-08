@@ -9,3 +9,11 @@ class UserBase(SQLModel):
 class User(UserBase, table=True):
     id: int = Field(default=None, primary_key=True)
     hashed_password: str = Field()
+
+class BookBase(SQLModel):
+    title: str
+    author: str
+    pages: int
+
+class Book(BookBase, table=True):
+    id: int = Field(default=None, primary_key=True)

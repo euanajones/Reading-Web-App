@@ -38,7 +38,9 @@ app.add_middleware(
 )
 
 from server.routers.users import router as users_router
+from server.routers.books import router as books_router
 app.include_router(users_router)
+app.include_router(books_router)
 
 @app.get("/health")
 def health_check():

@@ -3,7 +3,7 @@ import jwt
 import os
 import bcrypt
 from dotenv import load_dotenv
-from fastapi import Depends, HTTPException
+from fastapi import Depends
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 
 load_dotenv()

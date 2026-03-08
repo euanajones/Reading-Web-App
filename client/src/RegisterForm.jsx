@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import axios from 'axios';
+import api, { saveToken } from './api';
 
 function RegisterForm() {
     const usernameRef = useRef(null);
@@ -8,27 +8,29 @@ function RegisterForm() {
     const lastNameRef = useRef(null);
     const passwordRef = useRef(null);
 
-    const [token, setToken] = useState("");
+    const [success, setSuccess] = useState(false);
     const [error, setError] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-         
-        const username = usernameRef.current.value;
-        const email = emailRef.current.value;
-        const firstName = firstNameRef.current.value;
-        const lastName = lastNameRef.current.value;
-        const password = passwordRef.current.value;
 
-        axios.post('http://localhost:8000/user/create', { username, email, first_name: firstName, last_name: lastName, password })
+        api.post('/users/create', {
+            username: usernameRef.current.value,
+            email: emailRef.current.value,
+            first_name: firstNameRef.current.value,
+            last_name: lastNameRef.current.value,
+            password: passwordRef.current.value,
+        })
             .then(({ data }) => {
+                saveToken(data.token);
                 setError(false);
-                setToken(data.token);
+                setSuccess(true);
             })
             .catch(() => {
                 setError(true);
+                setSuccess(false);
             });
-    }
+    };
 
     return (
         <form onSubmit={handleSubmit}>
@@ -39,7 +41,7 @@ function RegisterForm() {
             <input ref={passwordRef} type="password" placeholder="Password" required />
             <button type="submit">Register</button>
             {error && <p>Registration failed. Please try again.</p>}
-            {token && <p>Registration successful! Your token: {token}</p>}
+            {success && <p>Registration successful!</p>}
         </form>
     );
 }

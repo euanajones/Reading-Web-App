@@ -17,11 +17,6 @@ def get_session():
 def create_tables():
     SQLModel.metadata.create_all(engine)
 
-def hash_password(password: str) -> str:
-    salt = bcrypt.gensalt()
-    hashed = bcrypt.hashpw(password.encode("utf-8"), salt)
-    return hashed.decode("utf-8")
-
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     create_tables()

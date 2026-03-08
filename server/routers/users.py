@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, Query, HTTPException
 from sqlmodel import Session, select
-from server.main import get_session, hash_password
+from server.main import get_session
+from server.auth.auth import hash_password, create_token, verify_current_user
 from server.models import User
 from server.schemas import UserCreate, UserPublic, UserUpdate
 
@@ -10,7 +11,7 @@ router = APIRouter(prefix="/users", tags=["users"])
 def get_users_health():
     return {"status": "Running"}
 
-@router.post("/create", response_model=UserPublic)
+@router.post("/create")
 def create_user(*, session: Session = Depends(get_session), user: UserCreate):
     hashed_password = hash_password(user.password)
     extra_data = {"hashed_password": hashed_password}
@@ -18,11 +19,13 @@ def create_user(*, session: Session = Depends(get_session), user: UserCreate):
     session.add(db_user)
     session.commit()
     session.refresh(db_user)
-    return db_user
+
+    token = create_token({"sub": db_user.username, "email": db_user.email})
+    return {"token": token}
 
 
 @router.get("/", response_model=list[UserPublic])
-def get_users(*, session: Session = Depends(get_session), offset: int = 0, limit: int = Query(default=30, le=100)):
+def get_users(*, session: Session = Depends(get_session), offset: int = 0, limit: int = Query(default=30, le=100), current_user: dict = Depends(verify_current_user)):
     users = session.exec(select(User).offset(offset).limit(limit)).all()
 
     if not users:

@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import api from '../api';
-import { useAuth } from './auth/AuthContext.jsx';
+import api from '../../api';
+import { useAuth } from '../auth/AuthContext.jsx';
 import './RegisterForm.css';
 
 function RegisterForm() {

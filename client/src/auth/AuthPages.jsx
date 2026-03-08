@@ -1,6 +1,6 @@
 import { Routes, Route, Link } from 'react-router-dom';
-import LoginForm from '../LoginForm';
-import RegisterForm from '../RegisterForm';
+import LoginForm from '../components/LoginForm';
+import RegisterForm from '../components/RegisterForm';
 import './AuthPages.css';
 
 function LoginPage() {

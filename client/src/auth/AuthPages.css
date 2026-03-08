@@ -1,0 +1,13 @@
+.auth-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100dvh;
+    min-width: 100dvw;
+
+    background: #F5F0E8;
+    background-image:
+        radial-gradient(ellipse at 20% 50%, #E8956D22 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, #C4622D18 0%, transparent 50%);
+}

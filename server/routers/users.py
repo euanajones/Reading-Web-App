@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends, Query, HTTPException
 from sqlmodel import Session, select
 from server.main import get_session
-from server.auth.auth import hash_password, create_token, verify_current_user
+from server.auth.auth import hash_password, create_token, verify_current_user, verify_password
 from server.models import User
-from server.schemas import UserCreate, UserPublic, UserUpdate
+from server.schemas import UserCreate, UserPublic, UserUpdate, UserLogin
 
 router = APIRouter(prefix="/users", tags=["users"])
 
@@ -23,6 +23,18 @@ def create_user(*, session: Session = Depends(get_session), user: UserCreate):
     token = create_token({"sub": db_user.username, "email": db_user.email})
     return {"token": token}
 
+@router.post("/login")
+def login_user(*, session: Session = Depends(get_session), user: UserLogin):
+    db_user = session.exec(select(User).where(User.email == user.email)).first()
+
+    if not db_user:
+        raise HTTPException(status_code=404, detail="User not found.")
+    
+    if not verify_password(user.password, db_user.hashed_password):
+        raise HTTPException(status_code=401, detail="Invalid credentials.")
+    
+    token = create_token({"sub": db_user.username, "email": db_user.email})
+    return {"token": token}
 
 @router.get("/", response_model=list[UserPublic])
 def get_users(*, session: Session = Depends(get_session), offset: int = 0, limit: int = Query(default=30, le=100), current_user: dict = Depends(verify_current_user)):

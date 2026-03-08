@@ -1,21 +1,22 @@
 import { Routes, Route, Link } from 'react-router-dom';
 import LoginForm from '../LoginForm';
 import RegisterForm from '../RegisterForm';
+import './AuthPages.css';
 
 function LoginPage() {
     return (
-        <div>
+        <div className="auth-page">
             <LoginForm />
-            <Link to="/register">Don't have an account? Register here.</Link>
+            {/* <Link to="/register">Don't have an account? Register here.</Link> */}
         </div>
     );
 }
 
 function RegisterPage() {
     return (
-        <div>
+        <div className="auth-page">
             <RegisterForm />
-            <Link to="/login">Already have an account? Login here.</Link>
+            {/* <Link to="/login">Already have an account? Login here.</Link> */}
         </div>
     );
 }

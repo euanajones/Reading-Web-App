@@ -13,3 +13,7 @@ class UserUpdate(SQLModel):
     last_name: str | None = None
     email: str | None = None
     password: str | None = None
+
+class UserLogin(SQLModel):
+    email: str
+    password: str

@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import api from '../api';
 import { useAuth } from './auth/AuthContext.jsx';
 import './RegisterForm.css';
@@ -79,6 +80,10 @@ function RegisterForm() {
                 <button type="submit" className="register-form__button">
                     Create Account
                 </button>
+
+                <Link to="/login" className="register-form__label">
+                    Already have an account? Login here.
+                </Link>
 
                 {error && <p className="register-form__error">Registration failed. Please try again.</p>}
                 {success && <p className="register-form__success">Registration successful!</p>}

@@ -1,7 +1,10 @@
 import { useRef, useState } from 'react';
 import api, { saveToken } from '../api';
+import { useAuth } from './auth/AuthContext.jsx';
 
 function RegisterForm() {
+    const { login } = useAuth();
+
     const usernameRef = useRef(null);
     const emailRef = useRef(null);
     const firstNameRef = useRef(null);
@@ -22,7 +25,7 @@ function RegisterForm() {
             password: passwordRef.current.value,
         })
             .then(({ data }) => {
-                saveToken(data.token);
+                login(data.token);
                 setError(false);
                 setSuccess(true);
             })

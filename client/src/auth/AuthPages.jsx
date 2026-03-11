@@ -2,7 +2,6 @@ import { Routes, Route, Link } from 'react-router-dom';
 import LoginForm from '../components/LoginForm';
 import RegisterForm from '../components/RegisterForm';
 import './AuthPages.css';
-import AddBookForm from '../components/AddBookCard';
 
 function LoginPage() {
     return (
@@ -22,18 +21,11 @@ function RegisterPage() {
     );
 }
 
-function TestPage() {
-    return (
-        <AddBookForm />
-    );
-}
-
 export default function AuthPages() {
     return (
         <Routes>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
-            <Route path="/test" element={<TestPage />} />
         </Routes>
     );
 }

@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import api from '../../api';
 import './AddBookCard.css';
+import { ImagesSquareIcon, X, XIcon } from '@phosphor-icons/react';
 
 function AddBookForm() {
     const [success, setSuccess] = useState(false);
@@ -36,6 +37,8 @@ function AddBookForm() {
         <div className="add-book-card">
             <div className="add-book-card__corner-accent" />
 
+            <XIcon className="add-book-card__close-icon" size={24} />
+
             <p className="add-book-card__eyebrow">Library</p>
             <h1 className="add-book-card__heading">Add New Book</h1>
 
@@ -56,7 +59,7 @@ function AddBookForm() {
                                 accept="image/*"
                             />
                                 <>
-                                    <span className="add-book-cover__icon">📷</span>
+                                    <span className="add-book-cover__icon"><ImagesSquareIcon /></span>
                                     <span className="add-book-cover__hint">Upload Cover</span>
                                 </>
                         </div>

@@ -311,3 +311,13 @@
     position: relative;
     z-index: 1;
 }
+
+.add-book-card__close-icon {
+    color: #C4622D;
+    opacity: 0.6;
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}

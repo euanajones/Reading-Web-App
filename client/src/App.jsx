@@ -1,11 +1,12 @@
 import './App.css'
 import AuthPages from './auth/AuthPages'
-import AddBookForm from './components/AddBookCard'
+import TestPage from './pages/Test';
 
 function App() {
   return (
     <>
       <AuthPages />
+      <TestPage />
     </>
   )
 }

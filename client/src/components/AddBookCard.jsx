@@ -1,17 +1,36 @@
+import { useState, useRef } from 'react';
+import api from '../../api';
 import './AddBookCard.css';
 
 function AddBookForm() {
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState(false);
 
-    const currentPage = () => {
-        // var checkbox = document.querySelector('.add-book-form__checkbox');
-        // var currentValue = 
-        // if (checkbox.checked) {
-        //     checkbox.value = "true";
-        // } else {
-        //     checkbox.value = "false";
-        // }
+    const titleRef = useRef(null);
+    const authorRef = useRef(null);
+    const pagesReadRef = useRef(null);
+    const totalPagesRef = useRef(null);
+    const currentlyReadingRef = useRef(null);
+
+    const handleSubmit = (e) => {
+        e.preventDefault(); 
+
+        api.post('/books/create', {
+            title: titleRef.current.value,
+            author: authorRef.current.value,
+            current_page: pagesReadRef.current.value || 0,
+            pages: totalPagesRef.current.value,
+            currently_reading: currentlyReadingRef.current.checked
+        })
+        .then(() => {
+            setSuccess(true);
+            setError(false);
+        })
+        .catch(() => {
+            setSuccess(false);
+            setError(true);
+        });
     };
-
 
     return (
         <div className="add-book-card">
@@ -26,7 +45,7 @@ function AddBookForm() {
                 <div className="add-book-card__divider-line add-book-card__divider-line--reverse" />
             </div>
 
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="add-book-card__layout">
 
                     {/* Left — cover upload */}
@@ -53,6 +72,7 @@ function AddBookForm() {
                                     type="text"
                                     required
                                     className="add-book-form__input"
+                                    ref={titleRef}
                                 />
                             </div>
 
@@ -62,6 +82,7 @@ function AddBookForm() {
                                     type="text"
                                     required
                                     className="add-book-form__input"
+                                    ref={authorRef}
                                 />
                             </div>
 
@@ -71,9 +92,8 @@ function AddBookForm() {
                                         <div style={{ display: 'flex', alignItems: 'center' }}>
                                             <input
                                                 type="number"
-                                                min="1"
-                                                required
                                                 className="add-book-form__input"
+                                                ref={pagesReadRef}
                                             />
                                             <span className="add-book-form__checkbox-label" style={{ padding: '0 10px'}}> of </span>
                                             <input
@@ -81,6 +101,7 @@ function AddBookForm() {
                                                 min="1"
                                                 required
                                                 className="add-book-form__input"
+                                                ref={totalPagesRef}
                                             />
                                         </div>  
                                 </div>
@@ -90,6 +111,7 @@ function AddBookForm() {
                                 <input
                                     type="checkbox"
                                     className="add-book-form__checkbox"
+                                    ref={currentlyReadingRef}
                                 />
                                 <span className="add-book-form__checkbox-label">Currently Reading?</span>
                             </label>
@@ -101,6 +123,8 @@ function AddBookForm() {
                     </div>
                 </div>
             </form>
+            {error && <p className="add-book-form__error">Failed to add book. Please try again.</p>}
+            {success && <p className="add-book-form__success">Book added successfully!</p>}
         </div>
     );
 }

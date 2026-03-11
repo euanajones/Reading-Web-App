@@ -1,0 +1,313 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap');
+
+.add-book-card {
+    background: #FDFAF4;
+    border: 1px solid #E2D5C3;
+    border-radius: 2px;
+    padding: 40px 44px;
+    width: 100%;
+    max-width: 680px;
+    box-shadow: 0 4px 40px #C4622D18, 0 1px 4px #00000008;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.add-book-card__corner-accent {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    border: 1px solid #E8956D44;
+    border-radius: 1px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.add-book-card__eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #C4622D;
+    margin-bottom: 8px;
+    font-family: "Georgia", serif;
+    position: relative;
+    z-index: 1;
+}
+
+.add-book-card__heading {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2C1810;
+    margin-bottom: 6px;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    font-family: 'Playfair Display', serif;
+    position: relative;
+    z-index: 1;
+}
+
+.add-book-card__divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+}
+
+.add-book-card__divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #E2D5C3);
+}
+
+.add-book-card__divider-line--reverse {
+    background: linear-gradient(to left, transparent, #E2D5C3);
+}
+
+.add-book-card__divider-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #C4622D;
+    opacity: 0.5;
+}
+
+/* Two column layout */
+.add-book-card__layout {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 36px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Cover upload area */
+.add-book-cover {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.add-book-cover__dropzone {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    background: #FAF6EE;
+    border: 1px dashed #DDD0BC;
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    overflow: hidden;
+    position: relative;
+}
+
+.add-book-cover__dropzone:hover {
+    border-color: #C4622D;
+    background: #FAF4EA;
+}
+
+.add-book-cover__dropzone input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+.add-book-cover__preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+}
+
+.add-book-cover__icon {
+    font-size: 28px;
+    opacity: 0.3;
+    position: relative;
+    z-index: 1;
+}
+
+.add-book-cover__hint {
+    font-family: "Georgia", serif;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #9C8570;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.add-book-cover__limit {
+    font-family: "Georgia", serif;
+    font-size: 10px;
+    color: #B8A898;
+    text-align: center;
+    font-style: italic;
+}
+
+/* Form fields */
+.add-book-fields {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.add-book-form__field-group {
+    margin-bottom: 16px;
+}
+
+.add-book-form__label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #7A6553;
+    margin-bottom: 6px;
+    font-family: "Georgia", serif;
+}
+
+.add-book-form__input {
+    width: 100%;
+    padding: 11px 14px;
+    background: #FAF6EE;
+    border: 1px solid #DDD0BC;
+    border-radius: 2px;
+    font-size: 14px;
+    color: #2C1810;
+    font-family: 'Playfair Display', "Georgia", serif;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.add-book-form__input:focus {
+    border-color: #C4622D;
+    box-shadow: 0 0 0 3px #C4622D14;
+}
+
+/* Pages row */
+.add-book-form__pages-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    margin-bottom: 16px;
+}
+
+.add-book-form__pages-unit {
+    font-family: "Georgia", serif;
+    font-size: 12px;
+    color: #9C8570;
+    font-style: italic;
+    padding-bottom: 12px;
+    white-space: nowrap;
+}
+
+/* Checkbox */
+.add-book-form__checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+    cursor: pointer;
+}
+
+.add-book-form__checkbox {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #DDD0BC;
+    border-radius: 2px;
+    background: #FAF6EE;
+    cursor: pointer;
+    flex-shrink: 0;
+    position: relative;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.add-book-form__checkbox:checked {
+    background: #C4622D;
+    border-color: #C4622D;
+}
+
+.add-book-form__checkbox:checked::after {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 1px;
+    width: 5px;
+    height: 9px;
+    border: 1.5px solid #FDF8F0;
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg);
+}
+
+.add-book-form__checkbox-label {
+    font-family: "Georgia", serif;
+    font-size: 12px;
+    color: #7A6553;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Button */
+.add-book-form__button {
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(135deg, #C4622D 0%, #E8956D 100%);
+    color: #FDF8F0;
+    border: none;
+    border-radius: 2px;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-family: "Georgia", serif;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    margin-top: auto;
+}
+
+.add-book-form__button:hover {
+    opacity: 0.88;
+}
+
+.add-book-form__success {
+    margin-top: 20px;
+    padding: 12px 16px;
+    background: #F0F7F0;
+    border: 1px solid #B8D4B8;
+    border-radius: 2px;
+    color: #3A6B3A;
+    font-size: 13px;
+    font-style: italic;
+    text-align: center;
+    font-family: "Georgia", serif;
+    position: relative;
+    z-index: 1;
+}
+
+.add-book-form__error {
+    margin-top: 20px;
+    padding: 12px 16px;
+    background: #FDF0EC;
+    border: 1px solid #E8C4B4;
+    border-radius: 2px;
+    color: #8B3A1E;
+    font-size: 13px;
+    font-style: italic;
+    text-align: center;
+    font-family: "Georgia", serif;
+    position: relative;
+    z-index: 1;
+}

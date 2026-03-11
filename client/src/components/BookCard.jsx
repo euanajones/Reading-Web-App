@@ -1,10 +1,30 @@
 import { useState } from 'react';
 import { BookmarkIcon } from '@phosphor-icons/react';
 import './BookCard.css';
+import api from '../../api';
 
-function BookCard( { title, author, pages, currentPage, currentlyReading } ) {
+function BookCard( { book, onRefresh } ) {
 
-    const progress = pages > 0 ? Math.round((currentPage / pages) * 100) : 0;
+    const { id, title, author, current_page, pages, currently_reading } = book;
+
+    const [bookmark, setBookmark] = useState(currently_reading);
+
+    const progress = Math.round((current_page / pages) * 100);
+
+    const toggleBookmark = () => {
+        const newBookmarkState = !bookmark;
+
+        setBookmark(newBookmarkState);
+
+        api.patch(`/books/${id}`, { currently_reading: newBookmarkState })
+            .then(() => {
+                onRefresh();
+            })
+            .catch(() => {
+                setBookmark(!newBookmarkState);
+            });
+    };
+
     return (
         <div className="book-card">
 
@@ -17,12 +37,13 @@ function BookCard( { title, author, pages, currentPage, currentlyReading } ) {
             {/* Bookmark toggle */}
             <button
                 className="book-card__bookmark"
-                aria-label={currentlyReading ? 'Remove bookmark' : 'Bookmark'}
+                aria-label={currently_reading ? 'Remove bookmark' : 'Bookmark'}
+                onClick={toggleBookmark}
             >
                 <BookmarkIcon
                     size={22}
-                    weight={currentlyReading ? 'fill' : 'light'}
-                    color={currentlyReading ? '#E8956D' : '#F5F0E8'}
+                    weight={currently_reading ? 'fill' : 'light'}
+                    color={currently_reading ? '#E8956D' : '#F5F0E8'}
                 />
             </button>
 

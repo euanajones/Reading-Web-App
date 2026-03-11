@@ -11,11 +11,12 @@ function Dashboard() {
             <p>Welcome to your dashboard!</p>
             <hr />
             <p>Currently Reading</p>
+            <BookList filter={"current"}/>
             <hr />
             <p>Pick Up Where You Left Off</p>
             <hr />
             <p>Search Your Library</p>
-            <BookList />
+            <BookList filter={"all"}/>
         </>
     );
 }

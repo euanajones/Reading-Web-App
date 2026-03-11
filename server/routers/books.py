@@ -20,12 +20,20 @@ def create_book(*, session: Session = Depends(get_session), book: BookCreate, cu
     session.refresh(db_book)
     return db_book
 
-@router.get("/", response_model=list[BookPublic])
+@router.get("/all", response_model=list[BookPublic])
 def get_books(*, session: Session = Depends(get_session), offset: int = 0, limit: int = Query(default=30, le=100), current_user: dict = Depends(verify_current_user)):
     books = session.exec(select(Book).offset(offset).limit(limit)).all()
 
     if not books:
         raise HTTPException(status_code=404, detail="No books found")
+    return books
+
+@router.get("/current", response_model=list[BookPublic])
+def get_currently_reading_books(*, session: Session = Depends(get_session), current_user: dict = Depends(verify_current_user)):
+    books = session.exec(select(Book).where(Book.currently_reading == True)).all()
+
+    if not books:
+        raise HTTPException(status_code=404, detail="No currently reading books found.")
     return books
 
 @router.get("/{book_id}", response_model=BookPublic)
@@ -50,19 +58,3 @@ def update_book(*, session: Session = Depends(get_session) ,book_id: int, book: 
     session.commit()
     session.refresh(db_book)
     return db_book
-
-@router.get("/progress/{book_id}")
-def get_book_progress(*, session: Session = Depends(get_session), book_id: int, current_user: dict = Depends(verify_current_user)):
-    book = session.get(Book, book_id)
-    if not book:
-        raise HTTPException(status_code=404, detail="Book not found")
-    
-    total_pages = book.pages
-    current_page = book.current_page
-
-    if current_page is None or total_pages == 0:
-        progress = 0
-    else:
-        progress = round((current_page / total_pages) * 10000) / 100
-
-    return {"book_id": book.id, "book_title": book.title, "progress": progress}

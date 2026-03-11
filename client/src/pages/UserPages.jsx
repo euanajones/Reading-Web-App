@@ -16,7 +16,7 @@ function Dashboard() {
             <p>Pick Up Where You Left Off</p>
             <hr />
             <p>Search Your Library</p>
-            <BookList filter={"all"}/>
+            <BookList filter={""}/>
         </>
     );
 }

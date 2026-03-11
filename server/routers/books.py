@@ -20,7 +20,7 @@ def create_book(*, session: Session = Depends(get_session), book: BookCreate, cu
     session.refresh(db_book)
     return db_book
 
-@router.get("/all", response_model=list[BookPublic])
+@router.get("/", response_model=list[BookPublic])
 def get_books(*, session: Session = Depends(get_session), offset: int = 0, limit: int = Query(default=30, le=100), current_user: dict = Depends(verify_current_user)):
     books = session.exec(select(Book).offset(offset).limit(limit)).all()
 

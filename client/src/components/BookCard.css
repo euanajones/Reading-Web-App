@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Playfair+Display:wght@400;600&display=swap');
+
+.book-card {
+    position: relative;
+    width: 160px;
+    aspect-ratio: 2 / 3;
+    border-radius: 2px;
+    overflow: hidden;
+    cursor: pointer;
+    flex-shrink: 0;
+    box-shadow:
+        0 2px 8px #2C181020,
+        0 8px 24px #2C181018,
+        4px 0 0 0 #C4622D inset;  /* spine effect */
+}
+
+/* Cover image */
+.book-card__cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.book-card:hover .book-card__cover {
+    transform: scale(1.04);
+}
+
+/* Fallback when no cover image */
+.book-card__cover-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(145deg, #2C1810 0%, #1A0E08 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.4s ease;
+}
+
+.book-card:hover .book-card__cover-placeholder {
+    transform: scale(1.04);
+}
+
+.book-card__cover-placeholder-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-style: italic;
+    color: #7A6553;
+    text-align: center;
+    padding: 16px;
+    line-height: 1.5;
+}
+
+/* Bookmark button */
+.book-card__bookmark {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+    filter: drop-shadow(0 1px 3px #00000060);
+}
+
+.book-card__bookmark:hover {
+    transform: scale(1.15);
+}
+
+.book-card__bookmark:active {
+    transform: scale(0.95);
+}
+
+/* Hover overlay */
+.book-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        #1A0E08F5 0%,
+        #1A0E08CC 40%,
+        #1A0E0844 70%,
+        transparent 100%
+    );
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 14px 12px;
+    box-sizing: border-box;
+}
+
+.book-card:hover .book-card__overlay {
+    opacity: 1;
+}
+
+/* Overlay content slides up on hover */
+.book-card__info {
+    transform: translateY(8px);
+    transition: transform 0.35s ease;
+}
+
+.book-card:hover .book-card__info {
+    transform: translateY(0);
+}
+
+.book-card__title {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #F5F0E8;
+    line-height: 1.3;
+    margin-bottom: 2px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.book-card__author {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    font-style: italic;
+    color: #C4B8A4;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Progress bar */
+.book-card__progress {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.book-card__progress-bar-track {
+    width: 100%;
+    height: 2px;
+    background: #FFFFFF22;
+    border-radius: 1px;
+    overflow: hidden;
+}
+
+.book-card__progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(to right, #C4622D, #E8956D);
+    border-radius: 1px;
+    transition: width 0.6s ease;
+}
+
+.book-card__progress-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: #9C8570;
+    text-align: right;
+}
+
+.book-card__progress-label span {
+    color: #E8956D;
+    font-style: italic;
+}

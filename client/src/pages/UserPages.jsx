@@ -1,4 +1,5 @@
 import { Routes, Route, Link } from 'react-router-dom';
+import BookCard from '../components/BookCard';
 
 function Dashboard() {
     return (
@@ -11,7 +12,7 @@ function Dashboard() {
             <p>Pick Up Where You Left Off</p>
             <hr />
             <p>Search Your Library</p>
-            
+            <BookCard title="The Great Gatsby" author="F. Scott Fitzgerald" pages={180} currentPage={45} currentlyReading={true} />
         </>
     );
 }
